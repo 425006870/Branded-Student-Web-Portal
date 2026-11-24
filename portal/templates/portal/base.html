@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Campus Portal{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'portal/css/style.css' %}">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <img src="{% static 'portal/images/logo.png' %}"
+           alt="Campus Portal logo: a graduation cap above an open book" width="72" height="72">
+      <p class="site-name">Campus<br>Portal</p>
+      {% include 'portal/partials/navbar.html' %}
+    </div>
+  </header>
+
+  <main id="main-content" tabindex="-1">
+    <div class="wrap sheet">
+      {% block content %}{% endblock %}
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><p>Campus Portal | Python Programming 2</p></div>
+  </footer>
+</body>
+</html>

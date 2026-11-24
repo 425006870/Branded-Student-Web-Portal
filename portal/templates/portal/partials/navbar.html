@@ -1,0 +1,6 @@
+{% url 'home' as home_url %}
+{% url 'about' as about_url %}
+<nav aria-label="Main navigation" class="tabs">
+  <a href="{{ home_url }}"{% if request.path == home_url %} aria-current="page"{% endif %}>Home</a>
+  <a href="{{ about_url }}"{% if request.path == about_url %} aria-current="page"{% endif %}>About</a>
+</nav>

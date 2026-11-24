@@ -1,0 +1,148 @@
+/* Fonts are bundled locally and loaded through the static folder */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+  font-weight: 700; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("../fonts/bricolage-grotesque-latin-wght-normal.woff2") format("woff2");
+  font-weight: 200 800; font-style: normal; font-display: swap;
+}
+
+:root {
+  --ultramarine: #2730d0;   /* header, footer, page frame */
+  --ink: #11132e;           /* text */
+  --paper: #f1f2fa;         /* the sheet */
+  --tab: #c9cdf5;           /* inactive tab */
+  --highlighter: #ffe14d;   /* focus and rules */
+  --display: "Bricolage Grotesque", "Arial Black", Arial, sans-serif;
+  --body: "Atkinson Hyperlegible", Verdana, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--body);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--ultramarine);
+}
+
+.wrap { width: 100%; max-width: 960px; margin: 0 auto; padding-inline: 24px; }
+
+/* Header and folder tabs */
+.site-header { background: var(--ultramarine); color: #fff; padding-top: 20px; }
+.header-inner { display: flex; align-items: flex-end; gap: 16px; }
+.site-header img { display: block; align-self: center; margin-bottom: 20px; border-radius: 16px; }
+.site-name {
+  margin: 0 0 20px;
+  align-self: center;
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.tabs { margin-left: auto; display: flex; gap: 6px; align-items: flex-end; }
+.tabs a {
+  display: block;
+  padding: 12px 28px 10px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--ink);
+  background: var(--tab);
+  text-decoration: none;
+  border-radius: 14px 14px 0 0;
+  position: relative;
+}
+.tabs a:hover { background: #fff; text-decoration: underline; text-underline-offset: 4px; }
+.tabs a[aria-current="page"] {
+  background: var(--paper);
+  padding-top: 18px;       /* the active tab stands taller */
+  text-decoration: none;
+}
+.tabs a:focus-visible,
+.skip-link:focus {
+  outline: 4px solid var(--highlighter);
+  outline-offset: 2px;
+  z-index: 2;
+}
+.skip-link {
+  position: absolute; left: -9999px; top: 8px;
+  background: var(--highlighter); color: var(--ink);
+  font-weight: 700; padding: 10px 14px; z-index: 10;
+}
+.skip-link:focus { left: 8px; }
+
+/* The sheet the tabs hang from */
+main { background: var(--paper); flex: 1; }
+main:focus { outline: none; }
+.sheet { padding-block: 56px 72px; }
+
+h1, h2, h3 { font-family: var(--display); line-height: 1.05; margin: 0; }
+.hero {
+  font-weight: 800;
+  font-size: clamp(2.5rem, 7vw, 4.75rem);
+  letter-spacing: -0.03em;
+  max-width: 14ch;
+  margin-bottom: 28px;
+}
+.hero-small { font-size: clamp(2.25rem, 5.5vw, 3.5rem); max-width: none; margin-bottom: 40px; }
+.lead { font-size: 1.35rem; max-width: 36em; margin: 0 0 56px; }
+
+/* Home: feature list */
+.list-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
+.features { list-style: none; margin: 0; padding: 0; border-top: 4px solid var(--ink); }
+.features li {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 2fr;
+  gap: 8px 32px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--ink);
+}
+.features h3 { font-size: 1.6rem; font-weight: 700; }
+.features p { margin: 0; align-self: center; }
+
+/* About: margin-note layout */
+.note {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) 2fr;
+  gap: 8px 32px;
+  padding: 28px 0;
+  border-top: 1px solid var(--ink);
+}
+.note:first-of-type { border-top: 4px solid var(--ink); }
+.note h2 { font-size: 1.6rem; font-weight: 700; }
+.note p { margin: 0; max-width: 38em; }
+
+/* Footer */
+.site-footer { background: var(--ultramarine); color: #fff; padding-block: 24px; }
+.site-footer p { margin: 0; }
+
+/* Mobile */
+@media (max-width: 640px) {
+  .wrap { padding-inline: 16px; }
+  .header-inner { flex-wrap: wrap; row-gap: 0; }
+  .site-header img { width: 56px; height: 56px; margin-bottom: 12px; }
+  .site-name { margin-bottom: 12px; font-size: 1.3rem; }
+  .tabs { margin-left: 0; width: 100%; }
+  .tabs a { flex: 1; text-align: center; padding-inline: 8px; }
+  .sheet { padding-block: 36px 48px; }
+  .lead { font-size: 1.15rem; margin-bottom: 40px; }
+  .features li, .note { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
